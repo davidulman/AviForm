@@ -1,0 +1,29 @@
+{
+  "name": "avi-form",
+  "version": "1.0.4",
+  "description": "Light package for creating styled forms using mui and react-form-hook",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidulman/aviform.git"
+  },
+  "author": "David Ulman",
+  "license": "MIT",
+  "peerDependencies": {
+    "@mui/material": "^5.14.4",
+    "@mui/x-date-pickers": "^6.11.0",
+    "react-hook-form": "^7.45.4"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "appropriate_version",
+    "@types/react-dom": "appropriate_version",
+    "typescript": "appropriate_version"
+  }
+}

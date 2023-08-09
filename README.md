@@ -44,15 +44,14 @@ const { formProps } = useAviForm(config);
 ### Examples
 
 ```typescript
-
- * const { formProps } = useAviForm({
- *   fields: [
- *      createHeader({ label: 'Personal Information' }),
- *      createTextField({
- *        label: 'Vorname',
- *        name: 'firstName',
- *        getValue: (value) => value.lastName.length === 0 && { disabled: true }
- * }),
+const { formProps } = useAviForm({
+  fields: [
+    createHeader({ label: 'Personal Information' }),
+    createTextField({
+      label: 'Vorname',
+      name: 'firstName',
+      getValue: (value) => value.lastName.length === 0 && { disabled: true },
+    }),
     createTextField({
       label: 'Nachname',
       name: 'lastName',
@@ -62,18 +61,18 @@ const { formProps } = useAviForm(config);
         }
       },
     }),
- *     createAutocomplete({ name: 'country', label: 'Country', options: ['USA', 'UK', 'Canada'] }),
- *     createDatePicker({ name: 'birthdate', label: 'Birth Date' }),
- *     createButton({ label: 'Submit' }),
- *
- *   ],
- *   onSubmit: (data) => console.log(data)
- * });
- *
- * return(
- *  <AviForm formProps={formProps} />
- * )
+    createAutocomplete({
+      name: 'country',
+      label: 'Country',
+      options: ['USA', 'UK', 'Canada'],
+    }),
+    createDatePicker({ name: 'birthdate', label: 'Birth Date' }),
+    createButton({ label: 'Submit' }),
+  ],
+  onSubmit: (data) => console.log(data),
+});
 
+return <AviForm formProps={formProps} />;
 ```
 
 ## FAQ
@@ -112,4 +111,5 @@ Thank you for your interest in contributing to AviForm!
 ## License
 
 AviForm is [MIT licensed](https://github.com/davidulman/aviform/blob/main/LICENSE).
+
 # AviForm
