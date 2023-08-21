@@ -26,9 +26,10 @@ import {
   GridProps,
 } from '@mui/material';
 import { DatePickerProps } from '@mui/x-date-pickers/DatePicker';
-import { SetValueConfig } from 'react-hook-form';
+import { Control, SetValueConfig } from 'react-hook-form';
 
 export interface AviTextFieldProps {
+  // formName: string;
   name: string;
   label: string;
   onChange?: (value: any) => any;
@@ -38,18 +39,22 @@ export interface AviTextFieldProps {
   ) => void;
   value?: unknown;
   getValue?: (values: any) => any;
+  changeValue?: (values: any) => any;
   xs?: number;
   sm?: number;
   md?: number;
   otherTextFieldProps?: TextFieldProps;
   otherGridProps?: GridProps;
+  defaultValue?: string | number | unknown;
+  listenToChanges?: string;
 }
-
 export interface AviAutocompleteProps extends AviTextFieldProps {
-  options: UseAutocompleteProps<any, false, false, false>['options'];
-  otherAutocompleteProps?: AutocompleteProps<any, false, false, false>;
+  options: string[] | Record<string, any>[];
+  otherAutocompleteProps?: Omit<
+    AutocompleteProps<any, true, false, false, 'div'>,
+    'renderInput' | 'options'
+  >;
 }
-
 export interface AviDatePickerProps extends AviTextFieldProps {
   otherDatePickerProps?: DatePickerProps<any>;
 }
@@ -102,7 +107,7 @@ export type AviInput =
 export interface AviFormProps {
   formProps: {
     inputs: AviInput[];
-    control: any;
+    control: Control;
     watch: any;
     setValue: any;
     handleSubmit: any;
@@ -119,6 +124,7 @@ export interface UseAviFormResult {
     handleSubmit: any;
     onSubmit: (data: any) => void;
   };
+  watch: any;
 }
 export interface UseAviFormConfig {
   fields: AviInput[];

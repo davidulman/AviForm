@@ -3,3 +3,7 @@
 node_modules
 # src
 dist
+# src/components/AviTextField.tsx
+# src/context/FormContext.tsx
+# src/context/FormReducer.tsx
+# src/hooks/useAviStateMangement.tsx

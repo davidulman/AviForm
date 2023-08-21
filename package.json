@@ -1,6 +1,6 @@
 {
   "name": "avi-form",
-  "version": "1.0.4",
+  "version": "1.0.19",
   "description": "Light package for creating styled forms using mui and react-form-hook",
   "main": "./dist/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidulman/aviform.git"
+    "url": "git+https://github.com/davidulman/aviform.git"
   },
   "author": "David Ulman",
   "license": "MIT",
@@ -18,12 +18,32 @@
     "@mui/x-date-pickers": "^6.11.0",
     "react-hook-form": "^7.45.4"
   },
-  "dependencies": {},
   "devDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@types/react": "appropriate_version",
     "@types/react-dom": "appropriate_version",
     "typescript": "appropriate_version"
+  },
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/davidulman/aviform/issues"
+  },
+  "homepage": "https://github.com/davidulman/aviform#readme",
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "csstype": "^3.1.2",
+    "dom-helpers": "^5.2.1",
+    "formik": "^2.4.3",
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "object-assign": "^4.1.1",
+    "prop-types": "^15.8.1",
+    "react-hook-form": "^7.45.4",
+    "react-is": "^18.2.0",
+    "react-transition-group": "^4.4.5",
+    "regenerator-runtime": "^0.14.0",
+    "scheduler": "^0.23.0",
+    "stylis": "^4.2.0"
   }
 }
