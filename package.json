@@ -1,6 +1,6 @@
 {
   "name": "avi-form",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "Light package for creating styled forms using mui and react-form-hook",
   "main": "./dist/index.js",
   "scripts": {
@@ -34,7 +34,6 @@
     "clsx": "^2.0.0",
     "csstype": "^3.1.2",
     "dom-helpers": "^5.2.1",
-    "formik": "^2.4.3",
     "js-tokens": "^4.0.0",
     "loose-envify": "^1.4.0",
     "object-assign": "^4.1.1",

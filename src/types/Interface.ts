@@ -34,7 +34,7 @@ export interface AviTextFieldProps {
   label: string;
   onChange?: (value: any) => any;
   onValueChange?: (
-    setValue: (name: string, value: any, options?: SetValueConfig) => void,
+    setValue: (name: string, value: string | number) => void,
     value: any
   ) => void;
   value?: unknown;
@@ -47,6 +47,7 @@ export interface AviTextFieldProps {
   otherGridProps?: GridProps;
   defaultValue?: string | number | unknown;
   listenToChanges?: string;
+  setValue?: string | number | unknown;
 }
 export interface AviAutocompleteProps extends AviTextFieldProps {
   options: string[] | Record<string, any>[];
@@ -82,6 +83,7 @@ export interface AviButtonProps {
   sm?: number;
   md?: number;
   otherGridProps?: GridProps;
+  getValue?: (values: any) => any;
 }
 
 export enum AviInputType {
@@ -112,6 +114,7 @@ export interface AviFormProps {
     setValue: any;
     handleSubmit: any;
     onSubmit: (v: any) => void;
+    initValues: any;
   };
 }
 
@@ -123,6 +126,7 @@ export interface UseAviFormResult {
     setValue: any;
     handleSubmit: any;
     onSubmit: (data: any) => void;
+    initValues: any;
   };
   watch: any;
 }

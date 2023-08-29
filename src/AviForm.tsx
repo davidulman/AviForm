@@ -17,8 +17,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-import React from 'react';
-import { Controller, set, useForm } from 'react-hook-form';
+import React, { memo } from 'react';
+import { Controller } from 'react-hook-form';
+import dayjs from 'dayjs';
 import {
   TextField,
   Button,
@@ -31,7 +32,6 @@ import {
   AutocompleteRenderInputParams,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AutocompleteProps } from '@mui/material';
 import {
   AviAutocompleteProps,
   AviButtonProps,
@@ -70,9 +70,15 @@ const StyledDatePicker = styled(DatePicker)({
 });
 
 export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
-  const { inputs, onSubmit, handleSubmit, control, watch, setValue } =
-    formProps;
-
+  const {
+    inputs,
+    onSubmit,
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    initValues,
+  } = formProps;
   const fieldValue = watch();
 
   const renderTextField = (userFields: AviTextFieldProps) => (
@@ -80,7 +86,9 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       name={userFields.name}
       key={userFields.name + userFields.value}
       control={control}
-      defaultValue={userFields.value || ''}
+      defaultValue={
+        (initValues && initValues[userFields?.name]) || userFields.value || ''
+      }
       render={({ field: { onChange, value, ...restFieldProps } }) => (
         <StyledTextField
           key={userFields.name + userFields.value}
@@ -99,7 +107,7 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
               userFields.onChange(e.target.value);
             }
             if (userFields.onValueChange) {
-              userFields.onValueChange(setValue, e.target.value);
+              userFields.onValueChange(setValue, watch());
             }
           }}
           //   {
@@ -118,6 +126,9 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
           {...restFieldProps}
           {...userFields?.otherTextFieldProps}
           {...(userFields.getValue ? userFields.getValue(fieldValue) : {})}
+          {...(userFields?.setValue
+            ? setValue(userFields.name, userFields?.setValue)
+            : {})}
         />
       )}
     />
@@ -128,6 +139,7 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       key={field.name}
       control={control}
       name={field.name}
+      defaultValue={(initValues && dayjs(initValues[field.name])) || null}
       render={({ field: { ...restFieldProps } }) => (
         <StyledDatePicker
           key={field.name}
@@ -143,25 +155,38 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
     <Controller
       name={field.name}
       control={control}
-      defaultValue={field.otherAutocompleteProps?.defaultValue || undefined}
+      defaultValue={
+        (initValues && initValues[field?.name]) ||
+        field.value ||
+        field.otherAutocompleteProps?.defaultValue ||
+        undefined
+      }
       render={({ field: controlProps }) => (
         <StyledAutocomplete
           {...controlProps}
           id={field.name}
+          key={field.name}
           options={field.options || []}
           isOptionEqualToValue={(option: unknown, value: unknown) =>
             option === value
           }
           renderInput={(params: AutocompleteRenderInputParams) => (
             <TextField
+              key={field.name}
               {...params}
               label={field.label}
               {...(field?.otherTextFieldProps as TextFieldProps)}
             />
           )}
-          onChange={(_: any, data: string) => controlProps.onChange(data)}
+          onChange={(_: any, data: string) => {
+            controlProps.onChange(data);
+
+            if (field.onValueChange) {
+              field.onValueChange(setValue, watch());
+            }
+          }}
           {...field?.otherAutocompleteProps}
-          value={field.value || controlProps.value || null}
+          value={field.value || controlProps.value || undefined}
         />
       )}
     />
@@ -189,6 +214,7 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       color={field.color || 'primary'}
       onClick={field.onClick}
       {...(field?.otherProps || {})}
+      {...(field.getValue ? field.getValue(fieldValue) : {})}
     >
       {field.label}
     </Button>
