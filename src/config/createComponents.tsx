@@ -20,6 +20,7 @@
 import {
   AviAutocompleteProps,
   AviButtonProps,
+  AviChildrenProps,
   AviDatePickerProps,
   AviHeaderProps,
   AviInputType,
@@ -99,6 +100,11 @@ const createButton = (props: Omit<AviButtonProps, 'fieldType'>) => ({
   ...props,
 });
 
+const createChildren = (props: Omit<AviChildrenProps, 'fieldType'>) => ({
+  fieldType: AviInputType.CHILDREN,
+  ...props,
+});
+
 export {
   createTextField,
   createDatePicker,
@@ -106,4 +112,5 @@ export {
   createHeader,
   createDividerHeader,
   createButton,
+  createChildren,
 };

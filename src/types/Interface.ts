@@ -70,6 +70,16 @@ export interface AviHeaderProps {
   otherGridProps?: GridProps;
 }
 
+export interface AviChildrenProps {
+  children: React.ReactNode;
+  name?: string;
+  label?: string;
+  xs?: number;
+  sm?: number;
+  md?: number;
+  otherGridProps?: GridProps;
+}
+
 export interface AviButtonProps {
   name?: string;
   label: string;
@@ -93,6 +103,7 @@ export enum AviInputType {
   HEADER = 'header',
   DIVIDER_HEADER = 'dividerHeader',
   BUTTON = 'button',
+  CHILDREN = 'children',
   DIVIDER = 'divider',
 }
 
@@ -104,7 +115,8 @@ export type AviInput =
   | (AviAutocompleteProps & AviBaseInputProps)
   | (AviDatePickerProps & AviBaseInputProps)
   | (AviHeaderProps & AviBaseInputProps)
-  | (AviButtonProps & AviBaseInputProps);
+  | (AviButtonProps & AviBaseInputProps)
+  | (AviChildrenProps & AviBaseInputProps);
 
 export interface AviFormProps {
   formProps: {

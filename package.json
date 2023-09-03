@@ -1,6 +1,6 @@
 {
   "name": "avi-form",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Light package for creating styled forms using mui and react-form-hook",
   "main": "./dist/index.js",
   "scripts": {

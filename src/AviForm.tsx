@@ -191,6 +191,7 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       )}
     />
   );
+
   const renderHeader = (field: AviHeaderProps) => (
     <Divider>
       <Typography
@@ -207,6 +208,9 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
     <Divider>{field.label}</Divider>
   );
   const renderDivider = () => <Divider />;
+
+  const renderChildren = (field: any) => <>{field.children}</>;
+
   const renderButton = (field: AviButtonProps) => (
     <Button
       type={field.type || 'submit'}
@@ -227,6 +231,7 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
     header: renderHeader,
     dividerHeader: renderDividerHeader,
     button: renderButton,
+    children: renderChildren,
     divider: renderDivider,
   };
 
