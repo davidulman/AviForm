@@ -49,8 +49,13 @@ export interface AviTextFieldProps {
   listenToChanges?: string;
   setValue?: string | number | unknown;
 }
+
+type AviAutoCompleteOptions = {
+  label: string;
+  value: string | number;
+};
 export interface AviAutocompleteProps extends AviTextFieldProps {
-  options: string[] | Record<string, any>[];
+  options: AviAutoCompleteOptions[] | Record<string, any>[];
   otherAutocompleteProps?: Omit<
     AutocompleteProps<any, true, false, false, 'div'>,
     'renderInput' | 'options'
@@ -136,6 +141,7 @@ export interface UseAviFormResult {
     control: any;
     watch: any;
     setValue: any;
+    getValues: any;
     handleSubmit: any;
     onSubmit: (data: any) => void;
     initValues: any;

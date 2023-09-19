@@ -167,9 +167,11 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
           id={field.name}
           key={field.name}
           options={field.options || []}
-          isOptionEqualToValue={(option: unknown, value: unknown) =>
-            option === value
-          }
+          getOptionLabel={(option: { label: string }) => option.label}
+          isOptionEqualToValue={(
+            option: { label: string; value: string },
+            value: { label: string; value: string; key: string }
+          ) => option.value === value.key}
           renderInput={(params: AutocompleteRenderInputParams) => (
             <TextField
               key={field.name}
@@ -178,15 +180,25 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
               {...(field?.otherTextFieldProps as TextFieldProps)}
             />
           )}
-          onChange={(_: any, data: string) => {
+          onChange={(_: any, data: any) => {
             controlProps.onChange(data);
-
             if (field.onValueChange) {
               field.onValueChange(setValue, watch());
             }
           }}
           {...field?.otherAutocompleteProps}
-          value={field.value || controlProps.value || undefined}
+          value={
+            controlProps.value
+              ? {
+                  key: controlProps.value.value,
+                  label: (
+                    field.options.find(
+                      (option: any) => option.value === controlProps.value.value
+                    ) || {}
+                  ).label,
+                }
+              : null
+          }
         />
       )}
     />
