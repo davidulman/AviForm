@@ -188,17 +188,40 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
           }}
           {...field?.otherAutocompleteProps}
           value={
-            controlProps.value
-              ? {
-                  key: controlProps.value.value,
+            field.otherAutocompleteProps?.multiple
+              ? controlProps.value?.map((value: any) => ({
+                  value: value?.value,
+                  key: value?.value,
                   label: (
                     field.options.find(
-                      (option: any) => option.value === controlProps.value.value
+                      (option: any) => option.value === value.value
                     ) || {}
                   ).label,
-                }
-              : null
+                })) || []
+              : {
+                  key: controlProps?.value?.value,
+                  label:
+                    (
+                      field?.options?.find(
+                        (option: any) =>
+                          option?.value === controlProps?.value?.value
+                      ) || {}
+                    )?.label || '',
+                } || []
           }
+
+          // value={
+          //   controlProps.value
+          //     ? {
+          //         key: controlProps.value.value,
+          //         label: (
+          //           field.options.find(
+          //             (option: any) => option.value === controlProps.value.value
+          //           ) || {}
+          //         ).label,
+          //       }
+          //     : undefined
+          // }
         />
       )}
     />
