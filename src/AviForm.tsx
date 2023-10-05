@@ -145,7 +145,12 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
           key={field.name}
           label={field.label}
           {...restFieldProps}
-          slotProps={{ textField: { fullWidth: true } }}
+          slotProps={{
+            textField: {
+              fullWidth: true,
+              required: field.otherTextFieldProps?.required || false,
+            },
+          }}
           {...field?.otherDatePickerProps}
         />
       )}
