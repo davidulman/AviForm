@@ -228,16 +228,14 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
   );
 
   const renderHeader = (field: AviHeaderProps) => (
-    <Divider>
-      <Typography
-        {...(field?.headerProps || {
-          variant: 'h4',
-          textAlign: 'center',
-        })}
-      >
-        {field.label}
-      </Typography>
-    </Divider>
+    <Typography
+      {...(field?.headerProps || {
+        variant: 'h4',
+        textAlign: 'center',
+      })}
+    >
+      {field.label}
+    </Typography>
   );
   const renderDividerHeader = (field: AviHeaderProps) => (
     <Divider>{field.label}</Divider>
@@ -254,6 +252,9 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       onClick={field.onClick}
       {...(field?.otherProps || {})}
       {...(field.getValue ? field.getValue(fieldValue) : {})}
+      sx={{
+        marginBottom: '1rem',
+      }}
     >
       {field.label}
     </Button>
