@@ -69,7 +69,7 @@ const StyledDatePicker = styled(DatePicker)({
   },
 });
 
-export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
+export const AviForm: React.FC<AviFormProps> = memo(({ formProps }) => {
   const {
     inputs,
     onSubmit,
@@ -303,6 +303,6 @@ export const AviForm: React.FC<AviFormProps> = ({ formProps }) => {
       </Grid>
     </form>
   );
-};
+});
 
 export default AviForm;
