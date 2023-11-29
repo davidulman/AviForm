@@ -95,11 +95,7 @@ export const AviForm: React.FC<AviFormProps> = memo(({ formProps }) => {
           label={userFields.label}
           variant="outlined"
           fullWidth
-          value={
-            dayjs(userFields.value as any) ||
-            dayjs(userFields.value as any) ||
-            ''
-          }
+          value={userFields.value || userFields.value || ''}
           disabled={userFields.otherTextFieldProps?.disabled || false}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setValue(userFields.name, userFields.value);
