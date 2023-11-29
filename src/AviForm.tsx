@@ -18,7 +18,7 @@
  */
 
 import React, { memo } from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, set } from 'react-hook-form';
 import dayjs from 'dayjs';
 import {
   TextField,
@@ -95,7 +95,11 @@ export const AviForm: React.FC<AviFormProps> = memo(({ formProps }) => {
           label={userFields.label}
           variant="outlined"
           fullWidth
-          value={userFields.value || value || ''}
+          value={
+            dayjs(userFields.value as any) ||
+            dayjs(userFields.value as any) ||
+            ''
+          }
           disabled={userFields.otherTextFieldProps?.disabled || false}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setValue(userFields.name, userFields.value);
@@ -145,6 +149,15 @@ export const AviForm: React.FC<AviFormProps> = memo(({ formProps }) => {
           key={field.name}
           label={field.label}
           {...restFieldProps}
+          value={field.value || restFieldProps.value || null}
+          onChange={(date: any) => {
+            setValue(field.name, date);
+            restFieldProps.onChange(date);
+
+            if (field.onValueChange) {
+              field.onValueChange(setValue, watch());
+            }
+          }}
           slotProps={{
             textField: {
               fullWidth: true,
